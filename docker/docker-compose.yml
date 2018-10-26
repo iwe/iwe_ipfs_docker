@@ -10,7 +10,7 @@ services:
     volumes:
       - type: bind
         source: "$DATA_DIR"
-        target: /data/ipfs
+        target: /data/ipfs:z
   sync_ipfs:
     image: ambitorio_sync_ipfs
     user: "${IPFS_UID}:${IPFS_GID}"
