@@ -25,21 +25,20 @@ if [ "$1" == "setup" ]; then
         fi
     fi
 
-    if [ ! -e "$EDS_BASE_DIR" ] || [ ! -e "$IPFS_DATA_DIR" ]; then
-        if [ "$EUID" -ne 0 ]; then
-            echo "We need to create $EDS_BASE_DIR and set its ownership, but we're not running as root"
-            exit 1
-        fi
-        for d in "$EDS_BASE_DIR" "$IPFS_DATA_DIR"; do
-            mkdir -p "$d"
-        done
-        chmod 700 "$EDS_BASE_DIR"
-        chown ipfs.ipfs "$EDS_BASE_DIR" -R
-        if [ "$?" -ne 0 ]; then
-            echo "Unable to chown ownership of IPFS directory"
-            exit 1
-        fi
+    if [ "$EUID" -ne 0 ]; then
+        echo "We need to create $EDS_BASE_DIR and set its ownership, but we're not running as root"
+        exit 1
     fi
+    for d in "$EDS_BASE_DIR" "$IPFS_DATA_DIR"; do
+        mkdir -p "$d"
+    done
+    chmod 700 "$EDS_BASE_DIR"
+    chown ipfs.ipfs "$EDS_BASE_DIR" -R
+    if [ "$?" -ne 0 ]; then
+        echo "Unable to chown ownership of IPFS directory"
+        exit 1
+    fi
+
     exit 0
 fi
 
