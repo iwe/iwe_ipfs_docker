@@ -1,0 +1,14 @@
+iWe docker image for Ambitorio's distributed data storage
+
+To build:  
+cd docker  
+sudo ./build.sh  
+(Note: sudo is only needed for the first build as the host system needs to have
+ an ipfs user created and $EDS_BASE_PATH needs to be created with the correct
+ permissions.)
+
+To start:  
+./start.sh
+
+To stop:  
+./stop.sh

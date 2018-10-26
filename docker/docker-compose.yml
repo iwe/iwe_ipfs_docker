@@ -1,0 +1,22 @@
+version: '3.2'
+
+services:
+  ipfs:
+    image: ambitorio_ipfs
+    user: "${IPFS_UID}:${IPFS_GID}"
+    restart: unless-stopped
+    ports:
+      - "4001:4001"
+    volumes:
+      - type: bind
+        source: "$DATA_DIR"
+        target: /data/ipfs
+  sync_ipfs:
+    image: ambitorio_sync_ipfs
+    user: "${IPFS_UID}:${IPFS_GID}"
+    restart: unless-stopped
+    environment:
+      FILELIST_URL: "${FILELIST_URL}"
+      PUBLIC_KEY: "${PUBLIC_KEY}"
+      HOME: /home/ambitorio
+
