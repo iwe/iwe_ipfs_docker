@@ -21,4 +21,6 @@ export DATA_DIR="$IPFS_DATA_DIR"
 export FILELIST_URL="$FILELIST_URL"
 export PUBLIC_KEY="$PUBLIC_KEY"
 docker-compose up -d
-docker-compose logs -f --tail=10
+if [ "$1" != "ansible" ]; then
+    docker-compose logs -f --tail=10
+fi
