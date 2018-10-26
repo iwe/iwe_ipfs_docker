@@ -20,4 +20,5 @@ export IPFS_GID=$(id -g ipfs)
 export DATA_DIR="$IPFS_DATA_DIR"
 export FILELIST_URL="$FILELIST_URL"
 export PUBLIC_KEY="$PUBLIC_KEY"
-docker-compose up
+docker-compose up -d
+docker-compose logs -f --tail=10
